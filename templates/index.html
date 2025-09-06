@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Gestionnaire de mots de passe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Mes mots de passe</h1>
+    <a href="{{ url_for('add') }}">Ajouter un mot de passe</a>
+    <table>
+        <tr>
+            <th>Service</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Notes</th>
+            <th>Actions</th>
+        </tr>
+        {% for pwd in passwords %}
+        <tr>
+            <td>{{ pwd['service'] }}</td>
+            <td>{{ pwd['username'] }}</td>
+            <td>{{ pwd['password'] }}</td>
+            <td>{{ pwd['notes'] }}</td>
+            <td>
+                <a href="{{ url_for('edit', id=pwd['id']) }}">Modifier</a>
+                <a href="{{ url_for('delete', id=pwd['id']) }}" onclick="return confirm('Supprimer ?');">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

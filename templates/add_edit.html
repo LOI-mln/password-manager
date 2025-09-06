@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ action }} mot de passe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>{{ action }} un mot de passe</h1>
+    <form method="POST">
+        <label>Service:<br>
+            <input type="text" name="service" value="{{ data.get('service', '') }}" required>
+        </label><br><br>
+        <label>Username:<br>
+            <input type="text" name="username" value="{{ data.get('username', '') }}">
+        </label><br><br>
+        <label>Password:<br>
+            <input type="text" name="password" value="{{ data.get('password', '') }}" required>
+        </label><br><br>
+        <label>Notes:<br>
+            <textarea name="notes">{{ data.get('notes', '') }}</textarea>
+        </label><br><br>
+        <button type="submit">{{ action }}</button>
+    </form>
+    <br>
+    <a href="{{ url_for('index') }}">Retour</a>
+</body>
+</html>
