@@ -1,9 +1,114 @@
-body { font-family: Arial, sans-serif; margin: 20px; }
-h1 { color: #333; }
-table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-th { background-color: #f4f4f4; }
-a { margin-right: 10px; text-decoration: none; color: blue; }
-a:hover { text-decoration: underline; }
-input, textarea { width: 300px; padding: 5px; }
-button { padding: 5px 10px; cursor: pointer; }
+/* === Reset simple === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8f9fa;
+    color: #333;
+    padding: 20px;
+}
+
+/* === Header === */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+/* === Boutons & liens === */
+a, button {
+    display: inline-block;
+    padding: 8px 14px;
+    margin: 5px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.2s ease-in-out;
+}
+
+a {
+    background: #007bff;
+    color: #fff;
+}
+
+a:hover {
+    background: #0056b3;
+}
+
+button {
+    background: #28a745;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1e7e34;
+}
+
+/* === Table === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    background: #343a40;
+    color: white;
+    font-size: 14px;
+}
+
+tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+tr:hover {
+    background: #e9ecef;
+}
+
+/* === Formulaire === */
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 60px;
+}

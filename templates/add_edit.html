@@ -8,21 +8,22 @@
 <body>
     <h1>{{ action }} un mot de passe</h1>
     <form method="POST">
-        <label>Service:<br>
+        <label>Service:
             <input type="text" name="service" value="{{ data.get('service', '') }}" required>
-        </label><br><br>
-        <label>Username:<br>
+        </label>
+        <label>Username:
             <input type="text" name="username" value="{{ data.get('username', '') }}">
-        </label><br><br>
-        <label>Password:<br>
+        </label>
+        <label>Password:
             <input type="text" name="password" value="{{ data.get('password', '') }}" required>
-        </label><br><br>
-        <label>Notes:<br>
+        </label>
+        <label>Notes:
             <textarea name="notes">{{ data.get('notes', '') }}</textarea>
-        </label><br><br>
+        </label>
         <button type="submit">{{ action }}</button>
     </form>
-    <br>
-    <a href="{{ url_for('index') }}">Retour</a>
+    <div style="text-align:center;">
+        <a href="{{ url_for('index') }}">⬅️ Retour</a>
+    </div>
 </body>
 </html>
