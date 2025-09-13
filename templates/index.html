@@ -7,10 +7,13 @@
 </head>
 <body>
     <h1>🔐 Gestionnaire de mots de passe</h1>
-    <div style="text-align:center;">
-        <a href="{{ url_for('add') }}">+ Ajouter un mot de passe</a>
+
+    <div class="controls">
+        <a class="primary" href="{{ url_for('add') }}">+ Ajouter un mot de passe</a>
     </div>
+
     <table>
+        <thead>
         <tr>
             <th>Service</th>
             <th>Username</th>
@@ -18,19 +21,26 @@
             <th>Notes</th>
             <th>Actions</th>
         </tr>
+        </thead>
+        <tbody>
         {% for pwd in passwords %}
         <tr>
             <td>{{ pwd['service'] }}</td>
-            <td>{{ pwd['username'] }}</td>
+            <td>{{ pwd['username'] or '-' }}</td>
             <td><code>{{ pwd['password'] }}</code></td>
-            <td>{{ pwd['notes'] }}</td>
+            <td>{{ pwd['notes'] or '-' }}</td>
             <td>
                 <a href="{{ url_for('edit', id=pwd['id']) }}">✏️ Modifier</a>
-                <a href="{{ url_for('delete', id=pwd['id']) }}" style="background:#dc3545;"
+                <a href="{{ url_for('delete', id=pwd['id']) }}" class="danger"
                    onclick="return confirm('Supprimer ce mot de passe ?');">🗑 Supprimer</a>
             </td>
         </tr>
+        {% else %}
+        <tr>
+            <td colspan="5" style="text-align:center; padding:20px;">Aucune entrée pour le moment — ajoute en une !</td>
+        </tr>
         {% endfor %}
+        </tbody>
     </table>
 </body>
 </html>

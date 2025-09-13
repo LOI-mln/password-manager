@@ -7,23 +7,72 @@
 </head>
 <body>
     <h1>{{ action }} un mot de passe</h1>
-    <form method="POST">
+
+    <form method="POST" novalidate>
         <label>Service:
             <input type="text" name="service" value="{{ data.get('service', '') }}" required>
         </label>
+
         <label>Username:
             <input type="text" name="username" value="{{ data.get('username', '') }}">
         </label>
-        <label>Password:
-            <input type="text" name="password" value="{{ data.get('password', '') }}" required>
+
+        <label>Mot de passe:
+            <div class="pwd-row">
+                <input id="password-input" type="text" name="password" value="{{ data.get('password', '') }}" required>
+                <div class="pwd-actions">
+                    <input id="gen-length" type="number" min="4" max="128" value="16" title="Longueur" />
+                    <button type="button" id="generate-btn">Générer</button>
+                    <button type="button" id="copy-btn">Copier</button>
+                </div>
+            </div>
         </label>
+
         <label>Notes:
             <textarea name="notes">{{ data.get('notes', '') }}</textarea>
         </label>
-        <button type="submit">{{ action }}</button>
+
+        <div style="text-align:center;">
+            <button type="submit">{{ action }}</button>
+            <a href="{{ url_for('index') }}" class="secondary">⬅️ Retour</a>
+        </div>
     </form>
-    <div style="text-align:center;">
-        <a href="{{ url_for('index') }}">⬅️ Retour</a>
-    </div>
+
+<script>
+document.getElementById('generate-btn').addEventListener('click', async function () {
+    const lengthInput = document.getElementById('gen-length');
+    let length = parseInt(lengthInput.value, 10);
+    if (isNaN(length) || length < 4) length = 16;
+    if (length > 128) length = 128;
+
+    try {
+        const resp = await fetch('{{ url_for("generate_password") }}', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ length: length })
+        });
+        if (!resp.ok) throw new Error('Erreur serveur');
+        const data = await resp.json();
+        document.getElementById('password-input').value = data.password;
+    } catch (err) {
+        alert('Impossible de générer le mot de passe : ' + err.message);
+    }
+});
+
+document.getElementById('copy-btn').addEventListener('click', async function () {
+    const pwd = document.getElementById('password-input').value;
+    if (!pwd) {
+        alert('Aucun mot de passe à copier');
+        return;
+    }
+    try {
+        await navigator.clipboard.writeText(pwd);
+        this.textContent = 'Copié ✓';
+        setTimeout(()=> this.textContent = 'Copier', 1500);
+    } catch (e) {
+        alert('Impossible de copier automatiquement. Sélectionne puis copie manuellement.');
+    }
+});
+</script>
 </body>
 </html>

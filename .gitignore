@@ -1,14 +1,14 @@
-# Environnement virtuel
+# Virtual env
 venv/
 __pycache__/
 
-# Base SQLite
+# SQLite DB
 instance/password_manager.db
 
-# Clé secrète
+# Secret key
 secret.key
 
-# Fichiers temporaires
+# Python artifacts
 *.pyc
 *.pyo
 *.log
