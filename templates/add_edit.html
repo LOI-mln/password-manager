@@ -34,7 +34,7 @@
 
         <div style="text-align:center;">
             <button type="submit">{{ action }}</button>
-            <a href="{{ url_for('index') }}" class="secondary">⬅️ Retour</a>
+            <a href="{{ url_for('index') }}" class="secondary">Retour</a>
         </div>
     </form>
 
@@ -67,7 +67,7 @@ document.getElementById('copy-btn').addEventListener('click', async function () 
     }
     try {
         await navigator.clipboard.writeText(pwd);
-        this.textContent = 'Copié ✓';
+        this.textContent = 'Copié';
         setTimeout(()=> this.textContent = 'Copier', 1500);
     } catch (e) {
         alert('Impossible de copier automatiquement. Sélectionne puis copie manuellement.');

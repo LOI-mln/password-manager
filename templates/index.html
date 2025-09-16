@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>🔐 Gestionnaire de mots de passe</h1>
+    <h1>Gestionnaire de mots de passe</h1>
 
     <div class="controls">
         <a class="primary" href="{{ url_for('add') }}">+ Ajouter un mot de passe</a>
@@ -30,9 +30,9 @@
             <td><code>{{ pwd['password'] }}</code></td>
             <td>{{ pwd['notes'] or '-' }}</td>
             <td>
-                <a href="{{ url_for('edit', id=pwd['id']) }}">✏️ Modifier</a>
+                <a href="{{ url_for('edit', id=pwd['id']) }}">Modifier</a>
                 <a href="{{ url_for('delete', id=pwd['id']) }}" class="danger"
-                   onclick="return confirm('Supprimer ce mot de passe ?');">🗑 Supprimer</a>
+                   onclick="return confirm('Supprimer ce mot de passe ?');">Supprimer</a>
             </td>
         </tr>
         {% else %}
